@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.25, maximum-scale=1.0, user-scalable=no">
+    <title>NeuronEx</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+    <script src="./lib/jquery.validate.min.js"></script>
+</head>
+<body>
+<header>
+    <img class="logo" src="./img/logo_white.png">
+    <div class="header-links">
+        <div>Blockchain</div>
+        <div>NeuronEx</div>
+        <div>Team</div>
+        <div>Blog</div>
+        <div>FAQ</div>
+        <div>Login</div>
+    </div>
+    <div class="btns">
+        <button class="papers-btn">
+            Papers
+        </button>
+        <button class="start-btn">
+            Start Trading
+        </button>
+        <div id="header-links_button" class="header-links_button">
+            Menu
+            <div class="header-links__expanded">
+                <div>Blockchain</div>
+                <div>NeuronEx</div>
+                <div>Team</div>
+                <div>Blog</div>
+                <div>FAQ</div>
+                <div>Login</div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="form-container">
+    <div id="form-body">
+        <h2>Total: <span id="total">0,00</span> USD </h2>
+        <span class="payment-method_label">Choose payment method</span>
+        <div class="payment-method">
+            <label for="payment-method-card">
+                <input id="payment-method-card" name="payment-method" type="radio" checked>
+                <span>Bank card</span>
+            </label>
+            <label for="payment-method-apple">
+                <input id="payment-method-apple" name="payment-method" type="radio">
+                <span>Apple pay</span>
+            </label>
+            <label for="payment-method-google">
+                <input id="payment-method-google" name="payment-method" type="radio">
+                <span>Google pay</span>
+            </label>
+        </div>
+        <form id="form" action="#" method="POST">
+            <div class="form-input_container form-input_wrapper">
+                <label class="form-input_label" for="amount">Amount</label>
+                <input name="amount" id="amount" class="form-input" type="text" required>
+            </div>
+
+            <div class="form-input_container form-input_wrapper">
+                <label class="form-input_label" for="name-on-card">Name on card</label>
+                <input name="card" id="name-on-card" class="form-input" type="text" required>
+            </div>
+
+            <div class="form-input_container form-input_wrapper">
+                <label class="form-input_label" for="card-number">Card number</label>
+                <input id="card-number" class="form-input" type="text" required>
+            </div>
+
+            <div class="form-input_wrapper">
+                <div class="form-input_container form-input_codes">
+                    <label class="form-input_label" for="expires">Expires</label>
+                    <input id="expires" class="form-input form-input_small" type="text" required>
+                </div>
+
+                <div class="form-input_container form-input_codes">
+                    <label class="form-input_label" for="security-code">Security code</label>
+                    <input id="security-code" class="form-input form-input_small" type="text" required>
+                </div>
+            </div>
+            <div style="margin-top: 20px; margin-left: 10px" class="form-input_container">
+                <input id="terms_checkbox" type="checkbox"/>
+                <label for="terms_checkbox">
+                    I have read and agree with the Terms and Conditions
+                </label>
+            </div>
+            <button class="form-submit-button" type="submit">Pay</button>
+            <span id="error-hint"></span>
+        </form>
+    </div>
+    <div class="success-checkmark">
+        <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
+        </div>
+    </div>
+</div>
+<footer>
+
+</footer>
+<script>
+  $('#header-links_button').on('click', (e) => {
+    const links = $('.header-links__expanded');
+    if (!e.target.open) {
+      links[0].offsetLeft = $('#header-links_button')[0].offsetLeft;
+      links.show();
+      e.target.open = true;
+    } else {
+      links.hide();
+      e.target.open = false;
+    }
+  });
+
+  $('#amount').on('keyup', (e) => {
+    let amount = e.target.value || '0';
+    if (!(amount.includes('.') || amount.includes(','))) {
+      amount += ',00';
+    }
+    $('#total')[0].innerText = amount;
+  });
+  $('.check-icon').hide();
+  $('#error-hint').hide();
+  $('#form').submit((data) => {
+    data.preventDefault();
+    $('.check-icon').hide();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId'),
+      clientId = urlParams.get('clientId');
+
+
+    $('#form').validate();
+    const fields = {
+      userId: userId || '71a5365f-380d-48f6-be88-477ee272b647',
+      clientId: clientId || 'd1554bde-4e1f-49c9-af4f-5d16fe3e80f6',
+      amount: parseFloat($('#amount')[0].value.replace(',', '.')),
+      currency: 'USD',
+      merchantId: '4fcdcbac-f047-4a07-a317-6aded86e7624',
+      cardName: $('#name-on-card')[0].value,
+      cardNumber: $('#card-number')[0].value,
+      expYear: $('#expires')[0].value.split('/')[1],
+      expMonths: $('#expires')[0].value.split('/')[0],
+      cvc: $('#security-code')[0].value,
+      termsAgreed: $('#terms_checkbox')[0].value,
+    };
+    $.ajax({
+      method: 'POST',
+      url: 'https://acquiring.test.i-link.pro/api/payment/charge',
+      data: fields,
+    })
+      .then(
+        () => {
+          $('#form-body').hide();
+          setTimeout(function() {
+            $('.check-icon').show();
+          }, 10);
+        },
+        (jqXHR) => {
+          $('#error-hint').show();
+          $('#error-hint').html(jqXHR.responseJSON.raw ? jqXHR.responseJSON.raw.message : jqXHR.responseJSON.message[0]);
+        },
+      );
+  });
+
+  $('#amount').inputmask('Regex', { regex: '^[0-9]{1}(\[\,]\\d{1,2})?$' });
+  $('#card-number').mask('0000 0000 0000 0000');
+  $('#expires').mask('00/00');
+  $('#security-code').mask('000');
+</script>
+</body>
+</html>

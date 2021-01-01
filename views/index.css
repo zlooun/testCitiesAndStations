@@ -1,0 +1,429 @@
+@font-face {
+    font-family: "DrukWideCyWebBoldRegular";
+    src: url("./fonts/DrukWideCyWebBoldRegular.eot");
+    src: url("./fonts/DrukWideCyWebBoldRegular.woff") format("woff"),
+    url("./fonts/DrukWideCyWebBoldRegular.ttf") format("ttf")
+}
+
+@font-face {
+    font-family: "ProximaNovaRegular";
+    src: url("./fonts/ProximaNova-Regular.eot");
+    src: url("./fonts/ProximaNova-Regular.woff") format("woff"),
+    url("./fonts/ProximaNova-Regular.ttf") format("ttf")
+}
+
+@font-face {
+    font-family: "ProximaNovaBold";
+    src: url("./fonts/ProximaNova-Bold.eot");
+    src: url("./fonts/ProximaNova-Bold.woff") format("woff"),
+    url("./fonts/ProximaNova-Bold.ttf") format("ttf")
+}
+
+#error-hint {
+    display: inline-block;
+    color: #c9302c;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 96px;
+    background: url("./img/back_planet.jpg");
+    font-family: 'ProximaNovaBold', sans-serif;
+    align-items: center;
+}
+
+header .papers-btn {
+    cursor: pointer;
+    font-family: 'ProximaNovaBold', sans-serif;
+    background: transparent;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 15px;
+}
+
+header .start-btn {
+    cursor: pointer;
+    font-family: 'ProximaNovaBold', sans-serif;
+    color: white;
+    width: 160px;
+    padding: 5px 15px;
+    margin-right: 15px;
+    height: 38px;
+    border: 1px solid #00000000;
+    border-radius: 5px;
+    background: transparent linear-gradient(180deg, #1B8BEB 0%, #2E0080 100%) 0% 0% no-repeat padding-box;
+}
+
+.btns {
+    display: flex;
+}
+
+header .logo {
+    margin: 25px;
+}
+
+header .header-links {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+}
+
+.header-links_button {
+    display: none;
+}
+
+.header-links__expanded {
+    z-index: 100;
+    display: none;
+    color: white;
+    position: absolute;
+    background: black;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0 0 -50px;
+}
+
+@media (max-width: 1050px) {
+    .btns {
+        position: absolute;
+        right: 0;
+    }
+    header .header-links {
+        display: none;
+    }
+    header .header-links_button {
+        position: relative;
+        color: white;
+        display: block;
+        height: 20px;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 7px 10px 4px;
+        margin-right: 15px;
+        margin-top: 2px;
+        background: transparent;
+        font-size: 13px;
+    }
+}
+
+
+@media (max-width: 610px) {
+    header .papers-btn,
+    header .start-btn {
+        display: none;
+    }
+
+    .form-container {
+        width: 100%!important;
+    }
+    header .header-links_button {
+        position: static;
+    }
+    .header-links__expanded {
+        width: 100%!important;
+    }
+}
+
+@media (max-width: 375px) {
+    .payment-method {
+        display: block!important;
+    }
+    .payment-method span {
+        margin: 0 20px 10px;
+    }
+
+    .form-input_wrapper {
+        display: block!important;
+    }
+
+    .form-input_wrapper .form-input_codes {
+        margin-top: 40px;
+        width: 100%;
+    }
+
+    .form-input_wrapper .form-input_codes input {
+        width: 100% !important;
+    }
+}
+
+header .header-links div {
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    font-family: "DrukWideCyWebBoldRegular", sans-serif;
+}
+
+footer {
+    width: 100%;
+    height: 500px;
+    background: url("./img/back_footer.jpg");
+}
+
+.form-container {
+    z-index: 10;
+    font-family: 'ProximaNovaBold', sans-serif;
+    min-width: 345px;
+    max-width: 377px;
+    height: 700px;
+    margin: 50px auto auto auto;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.payment-method input {
+    display: none;
+}
+
+.payment-method {
+    display: flex;
+    width: 100%;
+}
+
+.payment-method_label {
+    display: block;
+    font-size: 13px;
+    font-family: 'ProximaNovaBold', sans-serif;
+    padding-bottom: 10px;
+}
+
+.payment-method label span {
+    cursor: pointer;
+    padding-top: 10px;
+    text-align: center;
+    display: block;
+    width: 120px;
+    height: 30px;
+    margin-right: 5px;
+    border: 1px solid #EEEEEE;
+    border-radius: 2px;
+}
+
+.payment-method label input:checked ~ span {
+    border-color: black;
+}
+
+.form-input {
+    font-family: 'ProximaNovaRegular', sans-serif;
+    width: 377px;
+    padding: 10px 15px;
+    border: 1px solid #EEEEEE;
+    border-radius: 2px;
+}
+
+.form-input_small {
+    width: 180px;
+}
+
+.form-input_container {
+    position: relative;
+}
+
+.form-input_label {
+    position: absolute;
+    font-size: 13px;
+    top: -23px;
+}
+
+.form-input_wrapper {
+    display: flex;
+    margin-top: 55px;
+}
+
+.form-input_codes {
+    margin-right: 17px;
+}
+
+.form-input_codes input {
+    width: 148px;
+}
+
+.form-submit-button {
+    font-family: 'ProximaNovaBold', sans-serif;
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #00000000;
+    border-radius: 5px;
+    background: transparent linear-gradient(180deg, #1B8BEB 0%, #2E0080 100%) 0% 0% no-repeat padding-box;
+    font-size: 16px;
+    color: #fff;
+}
+
+.success-checkmark {
+    z-index: -10;
+    width: 80px;
+    height: 115px;
+    margin: 0 auto;
+    position: absolute;
+    top: 30%;
+    left: calc(50% - 40px);
+}
+
+.success-checkmark .check-icon {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    box-sizing: content-box;
+    border: 4px solid #4CAF50;
+}
+
+.success-checkmark .check-icon::before {
+     top: 3px;
+     left: -2px;
+     width: 30px;
+     transform-origin: 100% 50%;
+     border-radius: 100px 0 0 100px;
+ }
+
+.success-checkmark .check-icon::after {
+     top: 0;
+     left: 30px;
+     width: 60px;
+     transform-origin: 0 50%;
+     border-radius: 0 100px 100px 0;
+     animation: rotate-circle 4.25s ease-in;
+ }
+
+.success-checkmark  .check-icon::before, .success-checkmark .check-icon::after {
+                content: '';
+                height: 100px;
+                position: absolute;
+                background: #FFFFFF;
+                transform: rotate(-45deg);
+}
+
+.icon-line {
+    height: 5px;
+    background-color: #4CAF50;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+}
+
+.icon-line.line-tip {
+     top: 46px;
+     left: 14px;
+     width: 25px;
+     transform: rotate(45deg);
+     animation: icon-line-tip 0.75s;
+ }
+
+.icon-line.line-long {
+     top: 38px;
+     right: 8px;
+     width: 47px;
+     transform: rotate(-45deg);
+     animation: icon-line-long 0.75s;
+}
+
+.icon-circle {
+    top: -4px;
+    left: -4px;
+    z-index: 10;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    box-sizing: content-box;
+    border: 4px solid rgba(76, 175, 80, .5);
+}
+
+.icon-fix {
+    top: 8px;
+    width: 5px;
+    left: 26px;
+    z-index: 1;
+    height: 85px;
+    position: absolute;
+    transform: rotate(-45deg);
+    background-color: #FFFFFF;
+}
+
+@keyframes rotate-circle {
+    0% {
+        transform: rotate(-45deg);
+    }
+    5% {
+        transform: rotate(-45deg);
+    }
+    12% {
+        transform: rotate(-405deg);
+    }
+    100% {
+        transform: rotate(-405deg);
+    }
+}
+
+@keyframes icon-line-tip {
+    0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+    54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+    70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+    }
+    84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+    }
+    100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+    }
+}
+
+@keyframes icon-line-long {
+    0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+    65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+    84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+    }
+    100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+    }
+}

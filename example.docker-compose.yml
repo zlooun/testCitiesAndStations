@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  city-station:
+    environment: 
+      TYPE_ENV: "docker"
+    depends_on:
+      - city-station-postgres
+    image: city-station
+    container_name: city-station
+    restart: unless-stopped
+    ports:
+      - 127.0.0.101:8080:3000 #your (external host):(external port):(docker internal port) | docker internal port - where the service is launched
+    networks:
+      - city-station-net
+
+
+  city-station-postgres:
+    image: postgres
+    container_name: city-station-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=_ #postgres root password
+      - POSTGRES_USER=_ #postgres login of root user
+    ports:
+      - 127.0.0.101:5432:5432 #your (external host):(external port):(docker internal port) | docker internal port - where the service is launched
+    volumes:
+      - yourPath:/var/lib/postgresql/data #yourPath - the path in your system, where the DB will stored data
+    networks:
+      - city-station-net
+
+
+networks:
+  city-station-net:
+    driver: bridge
