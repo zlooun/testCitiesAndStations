@@ -38,13 +38,8 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ ./auto.sh
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
