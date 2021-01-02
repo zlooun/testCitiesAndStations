@@ -60,8 +60,6 @@ export class CityService {
     if (updateCityDto.name !== undefined) {
       saveCity.name = updateCityDto.name;
     }
-
-    console.log(updateCityDto)
     
     if (updateCityDto.phone !== undefined) {
       saveCity.phone = +updateCityDto.phone;

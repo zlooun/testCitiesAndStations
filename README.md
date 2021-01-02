@@ -40,6 +40,8 @@ $ npm install
 $ run ./auto.sh
 $ Настроить docker-compose.yml по example.docker-compose.yml
 $ Настроить ormconfig.json по ormconfig.example.json
+$ При локальном запуске используется полностью все настройки из ormconfig.json,
+  при запуске в докере host и port берутся из .env.development.docker
 $ npm run start
 
 

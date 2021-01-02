@@ -29,9 +29,9 @@ export class CityResolver {
 
   @Mutation(() => CityType)
   updateCity(
-    @Args("id", { nullable: false}) id: string,
-    @Args("name", { nullable: true}) name: string,
-    @Args("phone", { type: () => Int, nullable: true}) phone: number
+    @Args("id", { nullable: false} ) id: string,
+    @Args("name", { nullable: true} ) name: string,
+    @Args("phone", { type: () => Int, nullable: true} ) phone: number
   ) {
     return this.cityService.update({
       id,

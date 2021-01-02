@@ -7,12 +7,13 @@ import { RouterModule } from 'nest-router';
 import { routes } from './routes';
 import { StationModule } from './station/station.module';
 
-const environment = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const TYPE_ENV = process.env.TYPE_ENV || 'local';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `./assets/.env.${environment}`,
+      envFilePath: `./assets/.env.${NODE_ENV}.${TYPE_ENV}`,
       isGlobal: true,
       expandVariables: true,
     }),
