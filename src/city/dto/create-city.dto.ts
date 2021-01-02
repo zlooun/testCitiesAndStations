@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MaxLength, IsNumber} from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength, IsNumber } from 'class-validator';
 
 export class CreateCityDto {
   @IsNotEmpty()

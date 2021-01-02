@@ -1,8 +1,14 @@
-import { IsNotEmpty, IsString, IsUUID, MaxLength, ValidateIf, } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+  MaxLength,
+  ValidateIf,
+} from 'class-validator';
 
 export class UpdateCityDto {
   @IsNotEmpty()
-  @IsUUID("4")
+  @IsUUID('4')
   readonly id: string;
 
   @ValidateIf(o => o.name !== undefined)

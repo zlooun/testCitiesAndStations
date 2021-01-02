@@ -18,7 +18,7 @@ const TYPE_ENV = process.env.TYPE_ENV || 'local';
       expandVariables: true,
     }),
     GraphQLModule.forRoot({
-      autoSchemaFile: true
+      autoSchemaFile: true,
     }),
     TypeOrmModule.forRoot(),
     CityModule,

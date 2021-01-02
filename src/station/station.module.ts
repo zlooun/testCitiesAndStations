@@ -7,15 +7,13 @@ import { CityModule } from 'src/city/city.module';
 import { StationResolver } from './station.resolver';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Stations]), HttpModule, forwardRef(() => CityModule)],
-  providers: [
-    StationService,
-    StationResolver
+  imports: [
+    TypeOrmModule.forFeature([Stations]),
+    HttpModule,
+    forwardRef(() => CityModule),
   ],
+  providers: [StationService, StationResolver],
   //controllers: [StationController],
-  exports: [
-    StationService,
-    TypeOrmModule.forFeature([Stations])
-  ],
+  exports: [StationService, TypeOrmModule.forFeature([Stations])],
 })
 export class StationModule {}

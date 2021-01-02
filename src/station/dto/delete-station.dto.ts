@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsUUID, } from 'class-validator';
+import { IsNotEmpty, IsUUID } from 'class-validator';
 
 export class DeleteStationDto {
   @IsNotEmpty()
-  @IsUUID("4")
+  @IsUUID('4')
   readonly id: string;
 }

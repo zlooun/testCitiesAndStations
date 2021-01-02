@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
@@ -23,12 +28,12 @@ export class StationService {
     private cityService: CityService,
   ) {}
 
-  async find(name: string): Promise<IStation|null> {
+  async find(name: string): Promise<IStation | null> {
     try {
       const station = await this.StationsRepository.findOne({ name });
 
       if (!station) {
-        throw new NotFoundException("Station has not been found");
+        throw new NotFoundException('Station has not been found');
       }
 
       return station;
@@ -42,8 +47,8 @@ export class StationService {
 
     const saveStation: DeepPartial<Stations> = {
       name: createStationDto.name,
-      city: city.name
-    }
+      city: city.name,
+    };
 
     try {
       const savedStation = await this.StationsRepository.save(saveStation);
@@ -56,11 +61,11 @@ export class StationService {
 
   async update(updateStationDto: UpdateStationDto): Promise<IStation> {
     const saveStation: QueryDeepPartialEntity<Stations> = {};
-    
+
     if (updateStationDto.name !== undefined) {
       saveStation.name = updateStationDto.name;
     }
-    
+
     if (updateStationDto.cityName !== undefined) {
       const city = await this.cityService.find(updateStationDto.cityName);
 
@@ -68,17 +73,25 @@ export class StationService {
     }
 
     if (Object.keys(saveStation).length === 0) {
-      throw new HttpException("Update data is empty", HttpStatus.PAYMENT_REQUIRED);
+      throw new HttpException(
+        'Update data is empty',
+        HttpStatus.PAYMENT_REQUIRED,
+      );
     }
 
     try {
-      const result = await this.StationsRepository.update({id: updateStationDto.id}, saveStation);
-      
+      const result = await this.StationsRepository.update(
+        { id: updateStationDto.id },
+        saveStation,
+      );
+
       if (result.affected === 0) {
-        throw new NotFoundException("Station has not been found");
+        throw new NotFoundException('Station has not been found');
       }
 
-      const savedCity = this.StationsRepository.findOne({id: updateStationDto.id})
+      const savedCity = this.StationsRepository.findOne({
+        id: updateStationDto.id,
+      });
 
       return savedCity;
     } catch (error) {
@@ -88,10 +101,12 @@ export class StationService {
 
   async delete(deleteStationDto: DeleteStationDto): Promise<boolean> {
     try {
-      const result = await this.StationsRepository.delete({ id: deleteStationDto.id});
-      
+      const result = await this.StationsRepository.delete({
+        id: deleteStationDto.id,
+      });
+
       if (result.affected === 0) {
-        throw new NotFoundException("Station has not been found");
+        throw new NotFoundException('Station has not been found');
       }
 
       return true;

@@ -7,11 +7,12 @@ import { CityService } from './city.service';
 import { Cities } from './entities/city.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cities]), HttpModule, forwardRef(() => StationModule)],
-  providers: [
-    CityService,
-    CityResolver
+  imports: [
+    TypeOrmModule.forFeature([Cities]),
+    HttpModule,
+    forwardRef(() => StationModule),
   ],
+  providers: [CityService, CityResolver],
   controllers: [CityController],
   exports: [CityService],
 })
